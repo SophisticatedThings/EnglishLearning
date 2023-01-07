@@ -1,6 +1,6 @@
-package artem.strelcov.computerstore.DAO;
+package artem.strelcov.corporativeapplication.DAO;
 
-import artem.strelcov.computerstore.model.User;
+import artem.strelcov.corporativeapplication.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

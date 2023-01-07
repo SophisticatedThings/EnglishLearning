@@ -1,13 +1,13 @@
-package artem.strelcov.computerstore;
+package artem.strelcov.corporativeapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ComputerStoreApplication {
+public class CorporativeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ComputerStoreApplication.class, args);
+        SpringApplication.run(CorporativeApplication.class, args);
     }
 
 }

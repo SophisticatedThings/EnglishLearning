@@ -1,7 +1,6 @@
-package artem.strelcov.computerstore.security;
+package artem.strelcov.corporativeapplication.security;
 
-import artem.strelcov.computerstore.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import artem.strelcov.corporativeapplication.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

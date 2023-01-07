@@ -1,4 +1,4 @@
-package artem.strelcov.computerstore.model;
+package artem.strelcov.corporativeapplication.model;
 
 
 import lombok.*;

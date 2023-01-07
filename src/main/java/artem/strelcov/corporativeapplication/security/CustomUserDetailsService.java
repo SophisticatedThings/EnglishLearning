@@ -1,7 +1,7 @@
-package artem.strelcov.computerstore.security;
+package artem.strelcov.corporativeapplication.security;
 
-import artem.strelcov.computerstore.DAO.UserRepository;
-import artem.strelcov.computerstore.model.User;
+import artem.strelcov.corporativeapplication.DAO.UserRepository;
+import artem.strelcov.corporativeapplication.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
