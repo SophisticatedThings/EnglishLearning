@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome ComputerStore</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    body{
+        background-color: #080710;
+        position: center;
+    }
+    h1{
+        font-family: "Bell MT" , "serif";
+        color: darkorange;
+        margin-top: 100px
+    }
+  </style>
+</head>
+<body>
+<div class="container text-center">
+  <h1> Welcome to ComputerStore </h1>
+  <h3><a th:href="@{/api/v1/users}">List of Users</a></h3>
+  <h3><a th:href="@{/api/v1/register}">Register</a></h3>
+  <h3><a th:href="@{/api/v1/login}">Login</a></h3>
+</div>
+
+</body>
+</html>
