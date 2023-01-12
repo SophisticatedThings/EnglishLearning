@@ -2,22 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Success</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 
     <style>
+        body{
+            background-color: azure;
 
-        .some {
-            text-align: center;
-            font-family: "Monospaced", "serif";
-            color: blue;
+        }
+        h1{
+            font-family: "Bell MT" , "serif";
+            color: navy;
+            margin-top: 100px
         }
     </style>
 </head>
 <body>
-    <div class="some">
-        <H1> Congratulations! </H1>
+    <div class="container text-center">
+        <h1> Congratulations! </h1>
         <h2> You have successfully registered</h2>
-        <h4><a th:href="@{/api/v1/login}">Click here to login</a></h4>
+        <h4><a th:href="@{/auth/login}">Click here to login</a></h4>
     </div>
 </body>
 </html>
