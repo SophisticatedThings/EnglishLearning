@@ -2,6 +2,7 @@ package artem.strelcov.corporativeapplication.controller;
 
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
 import artem.strelcov.corporativeapplication.model.User;
+import artem.strelcov.corporativeapplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @GetMapping(value = "")
     public String showSignedUpForm(Model model) {
@@ -27,7 +30,8 @@ public class RegisterController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        userRepository.save(user);
+        User user1 = userService.saveUser(user);
+        userRepository.findByEmail(user.getEmail());
         return "register_success";
     }
 }

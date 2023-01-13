@@ -12,30 +12,26 @@ import java.util.List;
 
 @Data
 public class CustomUserDetails implements UserDetails {
-    private final String username;
-    private final String password;
-    private final List<SimpleGrantedAuthority> authorities;
+    private final User user;
 
-    public CustomUserDetails(String username, String password, List<SimpleGrantedAuthority> authorities) {
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return user.getRole().getAuthorities();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getEmail();
     }
 
     @Override
@@ -55,9 +51,8 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.isEnabled();
     }
-
     public static UserDetails createSecurityUserFromEntity(User user){
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),user.getPassword(),

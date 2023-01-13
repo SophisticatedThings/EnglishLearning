@@ -2,6 +2,7 @@ package artem.strelcov.corporativeapplication.model;
 
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -32,5 +33,12 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     private Role role;
+    @Column(name = "verification_code", length = 64)
+    public String verificationCode;
+    public boolean enabled;
+
+    public String getFullName(){
+        return getFirstName() + getLastName();
+    }
 
 }

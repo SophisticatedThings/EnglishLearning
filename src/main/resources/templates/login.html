@@ -1,19 +1,18 @@
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
     <title>Login</title>
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="/auth/login">
+    <form class="form-signin" method="post" th:action="@{/auth/doLogin}" style="max-width: 400px; margin: 0 auto"  >
         <h2 class="form-signin-heading">Login</h2>
         <p>
-            <label for="Username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            <input type="email"  name="email" class="form-control" placeholder="Username" required>
         </p>
         <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <input type="password"  name="pass" class="form-control" placeholder="Password" required>
         </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>

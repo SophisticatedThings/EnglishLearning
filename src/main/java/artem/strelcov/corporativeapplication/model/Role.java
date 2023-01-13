@@ -10,7 +10,6 @@ import static artem.strelcov.corporativeapplication.model.Permission.INDEX_READ;
 public enum Role {
     PROGRAMMER(Set.of(INDEX_READ)),
     DIRECTOR(Set.of(INDEX_READ)),
-    HR(Set.of(INDEX_READ)),
     ADMIN(Set.of(INDEX_READ)),
     MANAGER(Set.of(INDEX_READ));
 

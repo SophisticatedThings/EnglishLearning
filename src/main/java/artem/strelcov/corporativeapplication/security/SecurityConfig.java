@@ -1,6 +1,7 @@
 package artem.strelcov.corporativeapplication.security;
 
 import artem.strelcov.corporativeapplication.model.Permission;
+import org.apache.naming.factory.SendMailFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -45,16 +46,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws  Exception {
-        http
-                .csrf().disable()
+        http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("auth/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/auth/login").permitAll()
-                .defaultSuccessUrl("/auth/login_success");
+                .permitAll()
+                .loginPage("/auth/login")
+                .usernameParameter("email")
+                .passwordParameter("pass")
+                .loginProcessingUrl("/auth/doLogin")
+                .defaultSuccessUrl("/api/v1");
+
 
     }
 }

@@ -3,6 +3,7 @@ package artem.strelcov.corporativeapplication.controller;
 
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
 import artem.strelcov.corporativeapplication.model.User;
+import artem.strelcov.corporativeapplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,21 +15,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/v1")
-@PreAuthorize("hasAuthority('index:read')")
 public class AppController {
-    UserRepository userRepository;
+    UserService userService;
     @Autowired
-    public AppController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AppController(UserService userService) {
+        this.userService = userService;
     }
-
-    @GetMapping("/some")
-    @PreAuthorize("hasAuthority('index:read')")
-    public String viewHomePage() {
-        return "index";
-    }
-    private boolean isUserValid(User user) {
-        return true;
+    @GetMapping
+    public String homePage(){
+        return "homePage";
     }
 
 }
