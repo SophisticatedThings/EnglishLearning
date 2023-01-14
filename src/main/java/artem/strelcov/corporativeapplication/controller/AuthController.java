@@ -32,9 +32,5 @@ public class AuthController {
     public String loginError(){
         return "login_error";
     }  */
-    @GetMapping("/users")
-    @PreAuthorize("hasAuthority('index:read')")
-    public String showUsers(){
-        return "users";
-    }
+
 }

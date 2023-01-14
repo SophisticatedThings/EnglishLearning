@@ -35,10 +35,11 @@ public class User {
     private Role role;
     @Column(name = "verification_code", length = 64)
     public String verificationCode;
+    @Column(name = "enabled")
     public boolean enabled;
 
     public String getFullName(){
-        return getFirstName() + getLastName();
+        return getFirstName() + " " +  getLastName();
     }
 
 }

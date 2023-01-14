@@ -25,6 +25,13 @@ public class AppController {
     public String homePage(){
         return "homePage";
     }
+    @GetMapping("/users")
+    @PreAuthorize("hasAuthority('users:read')")
+    public String showUsers(Model model){
+        List<User> users = userService.users();
+        model.addAttribute("listUsers", users);
+        return "users";
+    }
 
 }
 
