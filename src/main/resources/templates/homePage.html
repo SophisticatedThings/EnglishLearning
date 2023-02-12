@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>EnglishLearning</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: azure;
+
+        }
+        h1{
+            font-family: "Bell MT" , "serif";
+            color: navy;
+            margin-top: 100px;
+        }
+    </style>
 </head>
 <body>
-<h1>This is HomePage</h1>
+<div class="container text-center">
+    <h1>Learning English</h1>
+    <h3><a th:href="@{/api/v1/chat}">Enjoy the conversation!</a></h3>
+    <h3><a th:href="@{/register}">Learning grammar</a></h3>
+    <h3><a th:href="@{/auth/login}">Test yourself</a></h3>
+</div>
 </body>
 </html>

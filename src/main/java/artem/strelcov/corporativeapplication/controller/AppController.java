@@ -4,6 +4,7 @@ package artem.strelcov.corporativeapplication.controller;
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
 import artem.strelcov.corporativeapplication.model.User;
 import artem.strelcov.corporativeapplication.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Slf4j
 @Controller
 @RequestMapping("/api/v1")
 public class AppController {
@@ -21,9 +22,19 @@ public class AppController {
     public AppController(UserService userService) {
         this.userService = userService;
     }
+
+    /**
+     * homePage() is created as a main page for authorized users
+     * @return  homePage.html
+     */
     @GetMapping
     public String homePage(){
+
         return "homePage";
+    }
+    @GetMapping("/chat")
+    public String getChat(){
+        return "chat";
     }
     @GetMapping("/users")
     @PreAuthorize("hasAuthority('users:read')")
