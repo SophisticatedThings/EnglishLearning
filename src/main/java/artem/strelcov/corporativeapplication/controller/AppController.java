@@ -36,6 +36,11 @@ public class AppController {
     public String getChat(){
         return "chat";
     }
+    @GetMapping("/learning")
+    public String getLearningPage(){
+        return "learning_materials";
+    }
+
     @GetMapping("/users")
     @PreAuthorize("hasAuthority('users:read')")
     public String showUsers(Model model){
