@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        h2{
+            font-family: "Bell MT" , "serif";
+            color: #007bff;
+            text-decoration: none;
+            background-color: transparent;
+        }
+    </style>
+
 </head>
 <body>
-<div class="container text-center">
-  <h3>Congratulations, your account has been verified.</h3>
-  <h4><a th:href="@{/auth/login}">Click here to Login</a></h4>
+<div align="center">
+  <h2>Congratulations, your account has been verified.</h2>
+  <h3><a th:href="@{/auth/login}">Click here to Login</a></h3>
 </div>
 </body>
 </html>

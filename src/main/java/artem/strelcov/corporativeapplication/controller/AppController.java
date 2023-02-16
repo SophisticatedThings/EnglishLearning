@@ -22,11 +22,6 @@ public class AppController {
     public AppController(UserService userService) {
         this.userService = userService;
     }
-
-    /**
-     * homePage() is created as a main page for authorized users
-     * @return  homePage.html
-     */
     @GetMapping
     public String homePage(){
 

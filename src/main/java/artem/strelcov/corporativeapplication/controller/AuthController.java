@@ -16,22 +16,12 @@ public class AuthController {
         return "login";
     }
     @GetMapping("/doLogin")
-    @PreAuthorize("hasAuthority('index:read')")
     public String doLogin(){
         return "users";
     }
-     @GetMapping("/login_success")
-    public String getSuccessPage(){
-        return "login_success";
-    }
-    /*
-    @RequestMapping (value = "/login_success_handler", method = RequestMethod.POST)
-    public String loginSuccessHandler(){
-        return "index";
-    }
-    @GetMapping("/logout")
+    @GetMapping("/login_error")
     public String loginError(){
         return "login_error";
-    }  */
+    }
 
 }

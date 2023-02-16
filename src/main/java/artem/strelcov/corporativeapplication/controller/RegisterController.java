@@ -5,7 +5,6 @@ import artem.strelcov.corporativeapplication.model.User;
 import artem.strelcov.corporativeapplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +19,10 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/register")
 public class RegisterController {
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     UserService userService;
 
-    @GetMapping(value = "")
-    public String showSignedUpForm(Model model) {
+    @GetMapping
+    public String showSignUpForm(Model model) {
         model.addAttribute("user", new User());
         return "signup_form";
     }
@@ -33,7 +30,9 @@ public class RegisterController {
     @PostMapping("/process_register")
     public String processRegister(User user, HttpServletRequest request)
     throws UnsupportedEncodingException, MessagingException {
+
         userService.register(user, getSiteURL(request));
+
         return "register_success";
 
 

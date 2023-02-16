@@ -13,18 +13,18 @@
         }
         h1{
             font-family: "Bell MT" , "serif";
-            color: navy;
-            margin-top: 100px;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
 
-<div class="container text-center">
+<div align="center">
     <h1> Sorry, but you have given bad credentials </h1>
-</div>
-<form th:action="@{/auth/login}" method="post">
+
+<form th:action="@{/auth/login}" method="get">
     <input type="submit" value="Вернуться" />
 </form>
+</div>
 </body>
 </html>

@@ -1,8 +1,11 @@
 package artem.strelcov.corporativeapplication.service;
 
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
+import artem.strelcov.corporativeapplication.exception_handling.EmailExistsException;
+import artem.strelcov.corporativeapplication.exception_handling.IncorrectPasswordException;
 import artem.strelcov.corporativeapplication.model.User;
 import net.bytebuddy.utility.RandomString;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -38,7 +41,13 @@ public class UserService {
 
 
     public void register(User user, String siteURL)
-                throws UnsupportedEncodingException, MessagingException{
+            throws EmailExistsException, MessagingException, UnsupportedEncodingException {
+            if(userRepository.findByEmail(user.getEmail()) != null){
+                throw new EmailExistsException();
+            }
+            if(user.getPassword().length() < 8){
+                throw new IncorrectPasswordException();
+            }
             String encodedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
             String randomCode = RandomString.make(64);
@@ -51,13 +60,13 @@ public class UserService {
                 throws UnsupportedEncodingException, MessagingException{
             String toAddress = user.getEmail();
             String fromAddress = "shadowsqweze@mail.ru";
-            String senderName = "Corporative";
+            String senderName = "EnglishLearning";
             String subject = "Please, verify your registration";
             String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
-                + "<h3><a href=\"[[URL]]\">VERIFY</a></h3>"
+                + "<h3><a href=\"[[URL]]\">VERIFY ACCOUNT</a></h3>"
                 + "Thank you,<br>"
-                + "Corporative";
+                + "EnglishLearning";
 
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(message);
