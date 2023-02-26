@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body{
+            background-color: azure;
+            font-family: "Bell MT" , "serif";
+        }
+        h1{
+            font-family: "Bell MT" , "serif";
+            color: navy;
+        }
+        .button {
+            background-color: #128ff2;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Present Simple</h1>
+    <form action="#" th:action="@{/api/v1/tests/present-simple/results}" method="get" th:object="${form}">
+        <p><b>Exercise 1</b>.Put the verbs in the following sentences into affirmative, interrogative and negative forms </p>
+        <p>I(to do) <input type="text" th:field="*{answers[0]}"/> morning exercises.</p>
+        <p>He(to work) <input type="text" th:field="*{answers[1]}"/> at a factory.</p>
+        <p>She(to sleep) <input type="text"  th:field="*{answers[2]}"/> after dinner</p>
+        <p>They(to drink) <input type="text" th:field="*{answers[3]}"/> everyday.</p>
+        <p>You(to be) <input type="text"   th:field="*{answers[4]}"/> good friends.</p>
+
+        <p><b>Exercise 2</b>.Translate the following sentences </p>
+        <p>Я не занят <input type="text" th:field="*{answers[5]}"/></p>
+        <p>Они работают дома <input type="text" th:field="*{answers[6]}"/></p>
+        <p>Я не хочу Вас оправдывать <input type="text" th:field="*{answers[7]}"/></p>
+        <p>Солнце светит ярко для всех <input type="text" th:field="*{answers[8]}"/></p>
+        <p>Я ничего не знаю <input type="text" th:field="*{answers[9]}"/></p>
+        <br>
+        <button type="submit" class="button">Check results</button>
+    </form>
+</div>
+</body>
+</html>

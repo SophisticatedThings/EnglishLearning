@@ -33,7 +33,7 @@ public class User {
     private String lastName;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private Role role;
+    private Role role = Role.VISITOR;
     @Column(name = "verification_code", length = 64)
     public String verificationCode;
     @Column(name = "enabled")

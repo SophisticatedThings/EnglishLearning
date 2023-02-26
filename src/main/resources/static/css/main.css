@@ -99,7 +99,7 @@ button.primary {
 }
 
 button.accent {
-    background-color: navy;
+    background-color: #128ff2;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }

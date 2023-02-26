@@ -3,19 +3,51 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <style>
+        body{
+            background-color: azure;
+            font-family: "Bell MT" , "serif";
+        }
+        .button {
+            background-color: #128ff2;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        .container {
+            padding: 16px;
+            background-color: azure;
+        }
+        .login{
+            padding-left: 44%;
+        }
+        p{
+            width: 200%;
+        }
+        input[type=email] {
+            width: 360px;
+        }
+        input[type=password]{
+            width:360px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <form class="form-signin" method="post" th:action="@{/auth/doLogin}" style="max-width: 400px; margin: 0 auto"  >
-        <h2 class="form-signin-heading">Login</h2>
-        <p>
-            <input type="email"  name="email" class="form-control" placeholder="Username" required>
-        </p>
-        <p>
-            <input type="password"  name="pass" class="form-control" placeholder="Password" required>
-        </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <form class="" method="post" th:action="@{/auth/doLogin}" style="max-width: 400px; margin: 0 auto"  >
+        <h2 class="login">Login</h2>
+        <div class="container">
+            <p>
+                <input type="email"  name="email" class="email" placeholder="Username" required>
+            </p>
+            <p>
+                <input type="password"  name="pass" class="password" placeholder="Password" required>
+            </p>
+            <button class="button" type="submit">Sign in</button>
+        </div>
     </form>
-</div>
 </body>
 </html>

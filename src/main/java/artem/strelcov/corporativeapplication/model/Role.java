@@ -5,14 +5,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static artem.strelcov.corporativeapplication.model.Permission.INDEX_READ;
-import static artem.strelcov.corporativeapplication.model.Permission.USERS_READ;
+import static artem.strelcov.corporativeapplication.model.Permission.*;
 
 public enum Role {
-    PROGRAMMER(Set.of(INDEX_READ)),
-    DIRECTOR(Set.of(INDEX_READ)),
-    ADMIN(Set.of(INDEX_READ, USERS_READ)),
-    MANAGER(Set.of(INDEX_READ));
+
+    ADMIN(Set.of(USERS_READ)),
+    VISITOR(Set.of(HOME_PAGE,CHAT,LEARNING_MATERIALS,TESTS));
 
     private final Set<Permission> permissions;
 
