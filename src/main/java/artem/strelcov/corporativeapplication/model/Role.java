@@ -9,8 +9,8 @@ import static artem.strelcov.corporativeapplication.model.Permission.*;
 
 public enum Role {
 
-    ADMIN(Set.of(USERS_READ)),
-    VISITOR(Set.of(HOME_PAGE,CHAT,LEARNING_MATERIALS,TESTS));
+    ADMIN(Set.of(Permission.ADMIN)),
+    VISITOR(Set.of(Permission.VISITOR));
 
     private final Set<Permission> permissions;
 

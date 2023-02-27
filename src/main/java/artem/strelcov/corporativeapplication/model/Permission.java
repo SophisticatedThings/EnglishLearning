@@ -1,9 +1,8 @@
 package artem.strelcov.corporativeapplication.model;
 
 public enum Permission {
-    HOME_PAGE("home_page:read"),CHAT("chat:read"),LEARNING_MATERIALS("learning_materials:read"),
-    TESTS("tests:read"),
-    USERS_READ("users:read");
+    VISITOR("visitor:read"),
+    ADMIN("admin:read");
 
     private final String permission;
 

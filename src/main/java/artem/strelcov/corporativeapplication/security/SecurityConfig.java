@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -38,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws  Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("pass")
                 .loginProcessingUrl("/auth/doLogin").permitAll()
-                .defaultSuccessUrl("/api/v1")
+                .defaultSuccessUrl("/api/v1/define")
                 .failureUrl("/auth/login_error").permitAll();
 
 

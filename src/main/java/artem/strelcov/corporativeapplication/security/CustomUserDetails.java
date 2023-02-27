@@ -1,5 +1,6 @@
 package artem.strelcov.corporativeapplication.security;
 
+import artem.strelcov.corporativeapplication.model.Role;
 import artem.strelcov.corporativeapplication.model.User;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-
+    public Role getRole(){
+        return user.getRole();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRole().getAuthorities();

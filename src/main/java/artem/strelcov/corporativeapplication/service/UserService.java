@@ -3,6 +3,7 @@ package artem.strelcov.corporativeapplication.service;
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
 import artem.strelcov.corporativeapplication.exception_handling.EmailExistsException;
 import artem.strelcov.corporativeapplication.exception_handling.IncorrectPasswordException;
+import artem.strelcov.corporativeapplication.model.Role;
 import artem.strelcov.corporativeapplication.model.User;
 import net.bytebuddy.utility.RandomString;
 import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
@@ -38,7 +39,10 @@ public class UserService {
     public List<User> users(){
         return userRepository.findAll();
     }
-
+    @Transactional
+    public Role findRole(String email){
+        return userRepository.findRole(email);
+    }
 
     public void register(User user, String siteURL)
             throws EmailExistsException, MessagingException, UnsupportedEncodingException {

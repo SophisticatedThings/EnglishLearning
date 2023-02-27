@@ -3,6 +3,7 @@ package artem.strelcov.corporativeapplication.controller;
 
 import artem.strelcov.corporativeapplication.model.AnswerWrapper;
 import artem.strelcov.corporativeapplication.model.FeedbackResponse;
+import artem.strelcov.corporativeapplication.model.Role;
 import artem.strelcov.corporativeapplication.model.User;
 import artem.strelcov.corporativeapplication.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +12,20 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+
+import static artem.strelcov.corporativeapplication.model.Role.VISITOR;
+
 
 @Slf4j
 @Controller
@@ -30,23 +37,27 @@ public class AppController {
     public AppController(UserService userService) {
         this.userService = userService;
     }
+    @GetMapping("/define")
+    public String defineBasePage(Authentication authentication){
+           Role role = userService.findRole(authentication.getName());
+           if(role.equals(VISITOR))
+               return "redirect:";
+           return "redirect:/api/v1/users";
+    }
+
     @GetMapping
-    @PreAuthorize("hasAuthority('home_page:read')")
     public String homePage(){
         return "homePage";
     }
-    @PreAuthorize("hasAuthority('chat:read')")
     @GetMapping("/chat")
     public String getChat(){
         return "chat";
     }
-    @PreAuthorize("hasAuthority('learning_materials:read')")
     @GetMapping("/learning")
     public String getLearningPage(){
         return "learning_materials";
     }
     @GetMapping("/tests")
-    @PreAuthorize("hasAuthority('tests:read')")
     public String getTests(@RequestParam(value = "title", required = false) String title,
                            Model model){
         if(title == null){
@@ -155,7 +166,10 @@ public class AppController {
             System.out.println("Bad");
         }
     }
-
+@GetMapping("/adminHomePage")
+        public String getAdminHomePage(){
+        return "adminHomePage";
+}
     @GetMapping("/users")
     public String showUsers(Model model){
         List<User> users = userService.users();
