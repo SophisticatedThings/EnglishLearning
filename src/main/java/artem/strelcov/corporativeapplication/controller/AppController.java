@@ -2,9 +2,11 @@ package artem.strelcov.corporativeapplication.controller;
 
 
 import artem.strelcov.corporativeapplication.model.AnswerWrapper;
+import artem.strelcov.corporativeapplication.model.FeedbackResponse;
 import artem.strelcov.corporativeapplication.model.User;
 import artem.strelcov.corporativeapplication.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
@@ -24,6 +25,7 @@ import java.util.*;
 @RequestMapping("/api/v1")
 public class AppController {
     UserService userService;
+    private Long localCounter = 0L;
     @Autowired
     public AppController(UserService userService) {
         this.userService = userService;
@@ -131,6 +133,27 @@ public class AppController {
         }
 
         return map;
+    }
+    @GetMapping("/feedback")
+    public String getFeedbackPage(Model model){
+        model.addAttribute("responseEntity", new FeedbackResponse());
+        return "feedback";
+    }
+    @GetMapping("/feedback/processing")
+    public String processFeedback(@ModelAttribute("responseEntity") FeedbackResponse feedbackResponse){
+
+        startProcessFeedback(feedbackResponse.getResponse());
+        return "feedback-success";
+    }
+
+    private void startProcessFeedback(String response) {
+        String path = "C:/Users/sophi/IdeaProjects/EnglishLearning/src/main/resources/feedback/comment" + localCounter++;
+        try {
+            Files.write(Paths.get(path), response.getBytes());
+        }
+        catch(IOException e){
+            System.out.println("Bad");
+        }
     }
 
     @GetMapping("/users")

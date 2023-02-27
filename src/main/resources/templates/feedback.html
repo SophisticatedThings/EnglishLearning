@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+  <style>
+
+    body {
+      background-color: azure;
+      text-align: center;
+      font-family: "Bell MT" , "serif";
+
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .submissionfield { width: 60%; height: 430px; border: 1px solid #999999; padding: 5px; }
+    .button {
+      background-color: #128ff2;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 20%;
+      opacity: 0.9;
+    }
+    textarea{
+        resize: none;
+        display: block;
+    }
+  </style>
+</head>
+<body>
+<form th:action="@{/api/v1/feedback/processing}" th:object="${responseEntity}" method="get">
+  <div class="container">
+      <div align="center">
+    <h1>We want to make our product better,please, advise something</h1>
+    <label><h3>Response</h3></label>
+    <textarea type="text" th:field="*{response}" class="submissionfield"></textarea>
+    <button type="submit" class="button">Send</button>
+      </div>
+  </div>
+</form>
+</body>
+</html>
