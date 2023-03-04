@@ -17,4 +17,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findByVerificationCode(String code);
     @Query("select u.role from User u where u.email=:email")
     public Role findRole(String email);
+    @Modifying
+    @Query("update User set enabled=false where email=:email ")
+    public void blockUser(String email);
+    @Modifying
+    @Query("update User set enabled=true where email=:email ")
+    public void unblockUser(String email);
+
 }

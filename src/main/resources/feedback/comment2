@@ -1,0 +1,26 @@
+CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXISTS ] table_name ( [
+  { column_name data_type [ COMPRESSION compression_method ] [ COLLATE collation ] [ column_constraint [ ... ] ]
+    | table_constraint
+    | LIKE source_table [ like_option ... ] }
+    [, ... ]
+] )
+[ INHERITS ( parent_table [, ... ] ) ]
+[ PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ COLLATE collation ] [ opclass ] [, ... ] ) ]
+[ USING method ]
+[ WITH ( storage_parameter [= value] [, ... ] ) | WITHOUT OIDS ]
+[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ TABLESPACE tablespace_name ]
+
+CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXISTS ] table_name
+    OF type_name [ (
+  { column_name [ WITH OPTIONS ] [ column_constraint [ ... ] ]
+    | table_constraint }
+    [, ... ]
+) ]
+[ PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ COLLATE collation ] [ opclass ] [, ... ] ) ]
+[ USING method ]
+[ WITH ( storage_parameter [= value] [, ... ] ) | WITHOUT OIDS ]
+[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ TABLESPACE tablespace_name ]
+
+CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXISTS ] table_name

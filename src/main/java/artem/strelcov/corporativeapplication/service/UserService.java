@@ -3,10 +3,10 @@ package artem.strelcov.corporativeapplication.service;
 import artem.strelcov.corporativeapplication.DAO.UserRepository;
 import artem.strelcov.corporativeapplication.exception_handling.EmailExistsException;
 import artem.strelcov.corporativeapplication.exception_handling.IncorrectPasswordException;
+import artem.strelcov.corporativeapplication.model.FeedbackResponse;
 import artem.strelcov.corporativeapplication.model.Role;
 import artem.strelcov.corporativeapplication.model.User;
 import net.bytebuddy.utility.RandomString;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -18,6 +18,7 @@ import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -36,6 +37,14 @@ public class UserService {
         return userRepository.save(user);
     }
     @Transactional
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+    @Transactional
+    public Optional<User> findById(Long id){
+         return userRepository.findById(id);
+    }
+    @Transactional
     public List<User> users(){
         return userRepository.findAll();
     }
@@ -43,7 +52,17 @@ public class UserService {
     public Role findRole(String email){
         return userRepository.findRole(email);
     }
-
+    @Transactional
+    public void blockUser(String email){
+        userRepository.blockUser(email);
+    }
+    @Transactional
+    public void unblockUser(String email){
+        userRepository.unblockUser(email);
+    }
+    public List<FeedbackResponse>  findReviews(){
+        return null;
+    }
     public void register(User user, String siteURL)
             throws EmailExistsException, MessagingException, UnsupportedEncodingException {
             if(userRepository.findByEmail(user.getEmail()) != null){

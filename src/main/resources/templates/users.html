@@ -2,18 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="ISO-8859-1">
-  <title>List Users</title>
+  <title>ADMIN</title>
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/jquery/3.6.2/jquery.min.js"></script>
   <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    .form2{
+      display: inline-block;
+    }
+  p{
+    color: black;
+    font-family: "Bell MT" , "serif";
+    font-size: 20px;
+  }
+
+  </style>
 </head>
 <body>
 <div class="container text-center">
-
+  <div>
+    <br>
+    <br>
+    <b><a  href="/api/v1/users/reviews"><p>View user reviews</p></a></b>
+  </div>
+  <div>
+    <form class="form2" th:action="@{/api/v1/users/block/*{email}}" th:object="${user}" method="get">
+        <label><b>Block user(email)</b></label>
+        <input type="email" placeholder="email" th:field="*{email}" required>
+        <button type="submit" >Submit</button>
+    </form>
+    <form class="form2" th:action="@{/api/v1/users/unblock/*{email}}" th:object="${user}" method="get">
+      <label><b>Unblock user(email)</b></label>
+      <input type="email" placeholder="email" th:field="*{email}" required>
+      <button type="submit" >Submit</button>
+    </form>
+    <form  th:action="@{/api/v1/users/find}" th:object="${user}" method="get">
+      <label><b>Find User(Id)</b></label>
+      <input type="text" placeholder="id" th:field="*{id}" required>
+      <button type="submit" >Submit</button>
+    </form>
+  </div>
   <div>
     <h1>List of Users</h1>
   </div>
-
   <div>
     <table class="table table-striped table-bordered">
       <thead class="thead-dark">
@@ -23,6 +54,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Role</th>
+        <th>Status</th>
       </tr>
       </thead>
       <tbody>
@@ -32,6 +64,7 @@
         <td th:text="${user.firstName}">First Name</td>
         <td th:text="${user.lastName}">Last Name</td>
         <td th:text="${user.role}">Role</td>
+        <td th:text="${user.enabled}"><a href="/auth/login"></a> </td>
       </tr>
       </tbody>
     </table>

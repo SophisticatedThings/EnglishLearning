@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -38,7 +40,9 @@ public class User {
     public String verificationCode;
     @Column(name = "enabled")
     public boolean enabled;
-
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<FeedbackResponse> responses = new LinkedList<>();
     public String getFullName(){
         return getFirstName() + " " +  getLastName();
     }
