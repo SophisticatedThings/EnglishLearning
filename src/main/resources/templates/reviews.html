@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             <tr th:each="review: ${reviews}">
-                <td th:text="*{review.getId()}">Review</td>
+                <td th:text="*{review.getUserId()}">Review</td>
                 <td th:text="*{review.getTitle()}"></td>
                 <td th:text="*{review.getResponse()}"></td>
             </tr>

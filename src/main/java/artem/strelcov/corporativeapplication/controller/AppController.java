@@ -29,7 +29,6 @@ import java.util.*;
 import static artem.strelcov.corporativeapplication.model.Role.VISITOR;
 
 
-@Slf4j
 @Controller
 @RequestMapping("/api/v1")
 public class AppController {
@@ -52,21 +51,25 @@ public class AppController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String homePage() {
         return "homePage";
     }
 
     @GetMapping("/chat")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String getChat() {
         return "chat";
     }
 
     @GetMapping("/learning")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String getLearningPage() {
         return "learning_materials";
     }
 
     @GetMapping("/tests")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String getTests(@RequestParam(value = "title", required = false) String title,
                            Model model) {
         if (title == null) {
@@ -78,6 +81,7 @@ public class AppController {
     }
 
     @GetMapping("/tests/{title}/results")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String getTestsResults(@ModelAttribute("form") AnswerWrapper answerWrapper,
                                   @PathVariable("title") String title, Model model) {
         ArrayList<String> results = answerWrapper.getAnswerList();
@@ -153,12 +157,14 @@ public class AppController {
     }
 
     @GetMapping("/feedback")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String getFeedbackPage(Model model) {
         model.addAttribute("responseEntity", new FeedbackResponse());
         return "feedback";
     }
 
     @GetMapping("/feedback/processing")
+    @PreAuthorize("hasAuthority('visitor:read')")
     public String processFeedback(@ModelAttribute("responseEntity") FeedbackResponse feedbackResponse,
                                   Authentication authentication) {
         startProcessFeedback(feedbackResponse.getResponse());
@@ -178,6 +184,7 @@ public class AppController {
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasAuthority('admin:read')")
     public String showUsers(Model model) {
         List<User> users = userService.users();
         model.addAttribute("listUsers", users);
@@ -186,6 +193,7 @@ public class AppController {
     }
 
     @GetMapping("/users/block/{email}")
+    @PreAuthorize("hasAuthority('admin:read')")
     public String blockUser(
             @ModelAttribute("user") User user, @PathVariable("email") String id) {
         userService.blockUser(user.getEmail());
@@ -193,6 +201,7 @@ public class AppController {
     }
 
     @GetMapping("/users/unblock/{email}")
+    @PreAuthorize("hasAuthority('admin:read')")
     public String unblockUser(
             @ModelAttribute("user") User user, @PathVariable("email") String id) {
         userService.unblockUser(user.getEmail());
@@ -200,6 +209,7 @@ public class AppController {
     }
 
     @GetMapping("/users/reviews")
+    @PreAuthorize("hasAuthority('admin:read')")
     public String getReviews(Model model) throws IOException {
         model.addAttribute("reviews", responseService.getResponses());
         return "reviews";
@@ -226,6 +236,7 @@ public class AppController {
         return files;
     }
     @GetMapping("/users/find")
+    @PreAuthorize("hasAuthority('admin:read')")
     public String findUserById(@ModelAttribute("user") User user, Model model,
     @RequestParam("id") Long id){
         Optional<User> optionalUser = userService.findById(user.getId());
